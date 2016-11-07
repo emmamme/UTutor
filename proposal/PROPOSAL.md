@@ -23,5 +23,4 @@ The purpose of uTutor is to help people find tutors they need, such as a Univers
   2. By interests
     - User can enter keywords about their interests
     - uTutor will display a list of matched tutors
-5. Chat
-  - Users and tutors can chat with each other online through uTutor.
+5. Chat - Users and tutors can chat with each other online through uTutor.
