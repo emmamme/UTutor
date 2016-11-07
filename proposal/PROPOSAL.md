@@ -3,25 +3,25 @@ The purpose of uTutor is to help people find tutors they need, such as a Univers
 #PART 2
 1. Three Types of users: admin, user, tutor.
 2. Registration - when users use uTutor for the first time, they are required to register. Their information will be stored into database once validated. 
-a. For regular users, information required:
-- Username
-- Gender
-- Email
-- Password
-b. For tutors, information required:
-- Username
-- Gender
-- Email
-- Password
-- Fields
-- Address
+  1. For regular users, information required:
+    - Username
+    - Gender
+    - Email
+    - Password
+  2. For tutors, information required:
+    - Username
+    - Gender
+    - Email
+    - Password
+    - Fields
+    - Address
 3. Login - registered users can login with their username/email and password.
 4. Search Tutor
-a. By location
-- Users need to grant uTutor to access their locations or they can enter locations they are interested
-- Tutor will display nearby tutors on Google Map.
-b. By interests
-- User can enter keywords about their interests
-- uTutor will display a list of matched tutors
+  1. By location
+    - Users need to grant uTutor to access their locations or they can enter locations they are interested
+    - Tutor will display nearby tutors on Google Map.
+  2. By interests
+    - User can enter keywords about their interests
+    - uTutor will display a list of matched tutors
 5. Chat
-- Users and tutors can chat with each other online through uTutor.
+  - Users and tutors can chat with each other online through uTutor.
