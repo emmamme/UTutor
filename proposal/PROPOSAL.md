@@ -36,3 +36,5 @@ The purpose of uTutor is to help people find tutors they need, such as a Univers
     - Messages will be stored in database
 5. Rating - users can rate each tutor and add comments to them
   - User can go to each totor's profile page to rate them and add comments to them
+#PART 2
+See csc309_htmlMockSketch.pdf
