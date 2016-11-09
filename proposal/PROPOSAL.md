@@ -1,5 +1,5 @@
 #PART 1
-The purpose of uTutor is to help people find tutors they need, such as a University course tutor, a painting tutor or a bartending tutor. Users can find a tutor based on their interests and/or location. Users can also connect with other users based on their interests and/or location. In addition, uTutor features a rating system which allows users to rate a tutor and add comments.
+The purpose of uTutor is to help people find tutors in their field of interest, such as a University course tutor, a painting tutor or a bartending tutor. Users can find a tutor based on their interests and/or location. Users can also connect with other users based on their interests and/or location. In addition, uTutor features a rating system which allows users to rate a tutor and add comments.
 #PART 2
 1. Three Types of users: admin, user, tutor.
 2. Registration - when users use uTutor for the first time, they are required to register. Their information will be stored into database once validated.
@@ -15,6 +15,7 @@ The purpose of uTutor is to help people find tutors they need, such as a Univers
     - Password
     - Fields of interest
     - Postal Code
+    - About
 3. Login - admins, registered tutors and users can login with their username and password.
   1. Admins will be directed to Admin page in which they can
     - Change password
