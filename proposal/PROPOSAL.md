@@ -1,10 +1,14 @@
-#PART 1 - Description of application
-The purpose of uTutor is to help people find tutors in their field of interest, such as a University course tutor, a painting tutor or a bartending tutor. Users can find a tutor based on their interests and/or location. Users can also connect with other users based on their interests and/or location. In addition, uTutor features a rating system which allows users to rate a tutor and add comments. 
+#uTUTOR
 
-The backend of the application will be implemented using Express.js and data will be stored in Mongodb. 
-#PART 2 - List of user interactions and data storage
+#PART 1 - Description of the Application
+The purpose of uTutor is to help people find tutors in their field of interest, such as a University course tutor, a painting tutor or a bartending tutor. Users can find a tutor based on their interests and/or locations. Users can also connect with other users and tutors based on their interests and/or location through the application. In addition, uTutor features a rating system which allows users to rate a tutor and add comments. 
+
+#PART 2 - List of User Interactions and Data Storage
+
+The backend of the application will be implemented using Node.js and data will be stored in a Mongodb database. 
+
 ##Interactions
-1. Three Types of users: admin, user, tutor.
+1. There are three types of users - admin, user, and tutor. Each of them can do different things.
 2. Registration - when users use uTutor for the first time, they are required to register. Their information will be stored into database once validated.
   1. For regular users, information required:
     - Username
