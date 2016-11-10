@@ -39,4 +39,4 @@ The purpose of uTutor is to help people find tutors in their field of interest, 
   - User can go to each totor's profile page to rate them and add comments to them
 
 #PART 3
-See csc309_htmlMockSketch.pdf
+See csc309.pdf
