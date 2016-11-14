@@ -1,0 +1,15 @@
+Group1
+
+Idea is pretty solid, and your plan is pretty clear, but it might be a bit too ambitious
+
+I would really focus on a minimum viable product. This might sound a little silly, but unless you guys are experienced web developers (and even still), this advice holds. Think about paring things down to the minimum of what you need, getting that up and running first, and then building some more stuff on top.
+
+Right now, it seems like your core functionality is getting different kinds of users set up and having users search for tutors + comment and rate. I would finish this most basic thing first, and even cut back on the search by location stuff.
+
+Once you have that up and running well, then I would say you could focus on the search by location and live chat stuff. A note on design: when (and if) you do the live chat, consider having it stay on the page the user is on, rather than take them to a new page. This is a lot nicer in a lot of ways than it having it's own page, but isn't really necessary. Another thing that isn't too hard to implement once you are already updating your views is desktop notifications. Again, this isn't really a necessary thing, but just pointing you in some directions which might be cool and less work than you may think once you get there.
+
+Finally, I would recommend fleshing out and really thinking for a while about database stuff and how you are organizing it. What you guys have now (at least in your proposal doc) is just the start of a sketch of things really, and is missing some stuff you guys mentioned in other places in the doc (like how chat messages are being stored). In particular, think about more about how you want to manage fields of interest (storing, what fields are acceptable, how to handle people entering in similar but different things and what that means for your search). Spending some time really working through this kind of thing (past just that you want to in some way store these things) can make your lives a lot easier later.
+
+In summary, cut things down to their smallest first, and you will have a much better time.
+
+Mark: 8/10
