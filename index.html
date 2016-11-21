@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>uTutor - Index</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="scripts/index.js"></script>
+</head>
+<body>
+	<!--===============================================
+	Header
+	===================================================-->
+	<nav class="navbar navbar-inverse" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">uTutor</a>
+			</div>
+
+			<ul class="nav navbar-nav links">
+				<li><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+			</ul>
+		</div>
+    </nav>
+	
+	<!--===============================================
+	Index Page
+	===================================================-->
+    <div class="container">
+    	<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-login">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-3">
+								<a href="#" class="active" id="login_form_link">Login</a>
+							</div>
+							<div class="col-xs-5">
+								<a href="#" id="student_register_form_link">Become a Student</a>
+							</div>
+							<div class="col-xs-4">
+								<a href="#" id="tutor_register_form_link">Become a Tutor</a>
+							</div>
+						</div>
+						<hr>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<!-- =========== Login Form ============ -->
+								<form id="login_form" role="form" style="display: block;">
+									<div class="form-group">
+										<input type="text" name="email" id="login_email" tabindex="1" class="form-control" placeholder="Email" required>
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" id="login_password" tabindex="2" class="form-control" placeholder="Password" required>
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="button" onclick="login()" name="login_submit" id="login_submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+											</div>
+										</div>
+									</div>
+								</form>
+								<!-- =========== Student Register Form ============ -->
+								<form id="student_register_form" role="form" style="display: none;">
+									<div class="form-group">
+										<input type="email" name="email" id="student_email" tabindex="1" class="form-control" placeholder="Email Address" required>
+									</div>								
+									<div class="form-group">
+										<input type="text" name="username" id="student_username" tabindex="1" class="form-control" placeholder="Username" required>
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" id="student_password" tabindex="2" class="form-control" placeholder="Password" required>
+									</div>
+									<div class="form-group">
+										<input type="password" name="confirm_password" id="student_confirm_password" tabindex="2" class="form-control" placeholder="Confirm Password" required>
+									</div>
+									<div class="form-group">
+										<label for="skills">Descreible your fields of interest in one or two words and seperate them by comma:</label>
+										<input type="text" name="skills" id="student_skills" tabindex="1" class="form-control" pattern="[0-9a-zA-Z]+(,[0-9a-zA-Z]+)*" placeholder="CSC309, bartending, painting" required>
+									</div>
+									<div class="form-group">
+										<label for="zipcode">Canadian ZIP Code:</label>
+										<input type="text" name="zipcode" id="student_zipcode" tabindex="1" class="form-control" pattern="[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]" placeholder="A1A 1A1" required>
+									</div>
+									<div class="form-group">
+										<label for="comment">About:</label>
+										<textarea class="form-control" rows="5" name="about" id="student_about"></textarea>
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="button" onclick="studentRegister()" name="student_register_submit" id="student_register_submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+											</div>
+										</div>
+									</div>
+								</form>
+								<!-- =========== Tutor Register Form ============ -->
+								<form id="tutor_register_form" role="form" style="display: none;">
+									<div class="form-group">
+										<input type="email" name="email" id="tutor_email" tabindex="1" class="form-control" placeholder="Email Address" required>
+									</div>								
+									<div class="form-group">
+										<input type="text" name="username" id="tutor_username" tabindex="1" class="form-control" placeholder="Username" required>
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" id="tutor_password" tabindex="2" class="form-control" placeholder="Password" required>
+									</div>
+									<div class="form-group">
+										<input type="password" name="confirm_password" id="tutor_confirm_password" tabindex="2" class="form-control" placeholder="Confirm Password" required>
+									</div>
+									<div class="form-group">
+										<label for="skills">Descreible your skills and expertise in one or two words and seperate them by comma:</label>
+										<input type="text" name="skills" id="tutor_skills" tabindex="1" class="form-control" pattern="[0-9a-zA-Z]+(,[0-9a-zA-Z]+)*" placeholder="CSC309, bartending, painting" required>
+									</div>
+									<div class="form-group">
+										<label for="zipcode">Canadian ZIP Code:</label>
+										<input type="text" name="zipcode" id="tutor_zipcode" tabindex="1" class="form-control" pattern="[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]" placeholder="A1A 1A1" required>
+									</div>
+									<div class="form-group">
+										<label for="comment">About:</label>
+										<textarea class="form-control" rows="5" name="about" id="tutor_about"></textarea>
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="button" onclick="tutorRegister()" name="register_submit" id="tutor_register_submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> 
+</body>
+</html>
