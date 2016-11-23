@@ -1,6 +1,7 @@
 # Lucas
 - Done:
   1. login and signup
+  2. Server-side validation
+  3. logout
 - Todo: 
-  1. Server-side validation
-  2. logout
+  1. Heroku
