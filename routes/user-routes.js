@@ -40,12 +40,15 @@ exports.addUser = function(req, res) {
  */
 exports.getUser = function(req, res) {
 	console.log("============= getUser =================");
+	console.log(req.query.password)
 	User.findOne({email: req.query.email}, function(err, user) { 
 		if (err) {
+			console.log(err);
 			return res.send(err);
 		}
 		
 		if (user) {
+			console.log(user.password)
 			if(req.query.password == user.password) {
 				req.session.email = user.email;
 				req.session.username = user.username;

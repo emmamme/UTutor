@@ -9,7 +9,7 @@
     "mongodb": "^2.2.11",
     "mongoose": "^4.6.5",
     "nodemon": "^1.11.0",
-	"cookie-parser": "^1.4.3",
+	  "cookie-parser": "^1.4.3",
     "cookie-session": "^2.0.0-alpha.1"
   }
 }

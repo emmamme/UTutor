@@ -39,7 +39,7 @@ function login() {
 		"email": email,
 		"password": password
 	};
-	
+
 	$.ajax({
 		url: "/user",
 		type: "GET",

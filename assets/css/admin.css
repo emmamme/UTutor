@@ -1,0 +1,44 @@
+.menu {
+    padding: 20px;
+    width: 25%;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    margin-top: -20px;
+    margin-left: -80px;
+    list-style-type: none;
+
+}
+
+.menu .active{
+    background-color: #4CAF50;
+    color: white;
+}
+
+li a:hover {
+    background-color: #555;
+    color: white;
+}
+
+ul{
+    list-style-type: none;
+    margin-left: -40px;
+}
+
+li a {
+    display: block;
+    color: #000;
+    padding: 16px 20%;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.main{
+    margin-left:35%;
+    padding:0;
+    margin-top:50px;
+    font-family:"Helvetica";
+    line-height: 200%;
+
+}
