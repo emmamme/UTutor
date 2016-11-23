@@ -8,10 +8,10 @@ var User = require('../models/user');
  */
 exports.addUser = function(req, res) {
 	console.log("============= addUser =============");
-    console.log(req.body);
-    var newUser = new User(req.body);
+	console.log(req.body);
+	var newUser = new User(req.body);
 
-    newUser.save(function(error, newUser) {
+	newUser.save(function(error, newUser) {
 		var response;
         if (error) {
 			if (error.name === 'MongoError' && error.code === 11000) {
@@ -72,15 +72,27 @@ exports.getUserFromSession = function(req, res) {
 	console.log("============= getUserFromSession =================");
 	if (req.session.email) {
 		return res.json({
-            username: req.session.username,
+			username: req.session.username,
 			type: req.session.type,
 			email: req.session.email
         });
 	} else {
 		return res.json({
-            username: "",
+			username: "",
 			type: "",
 			email: ""
         });
 	}
+};
+
+/**
+ * User logout - empty session
+ *
+ * @param {object} req request object
+ * @param {object} res response object
+ */
+exports.logout = function(req, res) {
+	console.log("============= logout =================");
+	req.session = null;
+	res.sendfile('index.html');
 };
