@@ -4,12 +4,8 @@
 	<meta charset="utf-8">
 	<title>uTutor - Admin Dashboard</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<<<<<<< HEAD
 	<link rel="stylesheet" href="../css/admin.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-=======
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
->>>>>>> 05ca5783ea32a4aa267914e8a115a54d1a16112e
 	<script src="../scripts/AdminDashboard.js"></script>
 </head>
 <body>
@@ -39,7 +35,6 @@
     <div class="container">
     	<div id="top_table" class="menu">
 		    <ul>
-		        <li><a name="nav" href="#Search_Users" id="button_search">Search Users</a></li>
 		        <li><a name="nav" href="#Change_PW" id="button_PW">Change PassWord</a></li>
 		        <li><a name="nav" href="#Add" id="button_add">Add Users</a></li>
 		        <li><a name="nav" href="#update" id="button_update">Update Users</a></li>        
@@ -51,11 +46,10 @@
 		<div class="main">
 			<div id="Search_Users">
 	        	<h2>List All Users</h2>
-	        	<button onclick="Search(this)">Students</button>
-	        	<button onclick="Search(this)">Tutors</button>
-	        	<button onclick="Search(this)">Admins</button>
-		        <table>
-		            <thead>
+	        	<button name="search">Student</button>
+	        	<button name="search">Tutor</button>
+	        	<button name="search">Admin</button>
+		        <table id="users_table">
 		            <tr>Type</tr>
 		            <tr>Username</tr>
 		            <tr>Email</tr>
@@ -63,9 +57,6 @@
 		            <tr>Skills</tr>
 		            <tr>Zipcode</tr>
 		            <tr>About</tr>
-		            </thead>
-		            <tbody id="users_table">
-		            </tbody>
 		        </table>
 	    	</div>
 	    </div>
