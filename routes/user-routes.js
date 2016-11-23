@@ -9,6 +9,21 @@ var User = require('../models/user');
 exports.addUser = function(req, res) {
 	console.log("============= addUser =============");
 	console.log(req.body);
+	
+	req.check('email', 'Invalid email address').isEmail();
+	req.assert('username', 'Invalid username').isAlphanumeric();
+	req.check('password', 'Password is too short').isLength({min: 4});
+	req.assert('skills', 'Invalid Skills').isSkills();
+	req.assert('zipcode', 'Invalid zip code address').isZipcode();
+	req.assert('about', 'About is too long').isLength({max: 2000});
+	
+	
+
+	var errors = req.validationErrors();
+	if (errors) {
+		return res.send(errors[0].msg);
+	}
+	
 	var newUser = new User(req.body);
 
 	newUser.save(function(error, newUser) {
