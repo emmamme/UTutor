@@ -32,9 +32,13 @@ app.get('/', function(req, res) {
 app.post('/user', user.addUser);
 app.get('/user', user.getUser);
 app.get('/userinsession', user.getUserFromSession);
+<<<<<<< HEAD
 app.get('/tutors',user.getTutors);
 
 app.get('/userprofile', user.getProfile);
+=======
+app.get('/logout', user.logout);
+>>>>>>> 05ca5783ea32a4aa267914e8a115a54d1a16112e
 
 // Start the server
 app.listen(3000);
