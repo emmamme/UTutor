@@ -26,4 +26,28 @@ $(function() {
         });
         
     }
+
+    function search(){
+        var tutor = $('#search').val().toLowerCase();
+        $.ajax({
+            url:'/tutors?tutor='+tutor,
+            type:'GET',
+            dataType:'json',
+            contentType:'application/json; charset=utf-8',
+            success: function(response){
+                //display the tutor list
+                var tmp = '';
+                var l = response.length;
+                for (let i=0; i<l; i++){
+                    tmp += '<li><a href="/userprofile?email="' + repsonse[i]['email'] + '>'+response[i]['username']+'</a></li><br><p>'+response[i]['skills']+response[i]['about']+'</p>'
+                }
+                $('#result').append(tmp);
+            }
+        });
+    }
+
+    $('#go').click(function(){
+        search();
+    });
 });
+

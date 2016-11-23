@@ -84,3 +84,28 @@ exports.getUserFromSession = function(req, res) {
         });
 	}
 };
+
+exports.getTutors = function(req,res){
+	console.log("============= getTutors =================");
+	if (req.query.tutor){
+		var skill = req.query.tutor;
+		console.log(skill);
+		User.find({$and:[{type: 'tutor'},{skills: {$regex: ".*"+skill+".*"}}]}, function(err,user){
+			if(err){
+				return res.send(err);
+			}
+			else{
+				console.log(user);
+				return res.send(user);
+			}
+		});
+	}
+};
+
+exports.getProfile = function(req,res){
+	console.log("============= getProfile =================");
+	if (req.query.email){
+		
+	}
+};
+
