@@ -1,4 +1,8 @@
+"use strict"
+
 var User = require('../models/user');
+       
+
 
 /**
  * Adds a new user document to the database.
@@ -9,9 +13,10 @@ var User = require('../models/user');
 
 exports.getUserFromSession = function(req, res) {
 	console.log("============= getUserFromSession =================");
-	if (req.query.property) {
-		var property = req.query.property.toLowerCase();
-		User.find({type:property}, function(err,result){
+	if (req.query.infor) {
+
+		var infor = req.query.infor.toLowerCase();
+		User.find({$or:[{username:infor}, {email:infor}]}, function(err,result){
 
 			if(err){
 				return res.send(err);
@@ -21,9 +26,37 @@ exports.getUserFromSession = function(req, res) {
 				return res.send(result);
 			}
 		})
-		//console.log(property);
+		
 	} 
 	else {
-		
+		console.log("shit");
 	}
 };
+
+
+exports.updateuser = function(req, res) {
+	console.log("============= updateuser =================");
+	console.log(req.body)
+	let data = req.body.data
+	if(data){
+		for(let i=0; i<data.length; i++){
+			let email = data[i].email
+			let password = data[i].password		
+			User.update({"email": email},{$set: {"password":password}},function (err, result) {
+	 
+		      
+		   });
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+

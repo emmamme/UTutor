@@ -34,6 +34,7 @@ app.post('/user', user.addUser);
 app.get('/user', user.getUser);
 app.get('/userinsession', user.getUserFromSession);
 app.get('/admin',admin.getUserFromSession)
+app.post('/updatepw',admin.updateuser)
 app.get('/logout', user.logout);
 
 
