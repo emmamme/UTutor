@@ -7,6 +7,7 @@ var session = require('cookie-session');
 var expressValidator = require('express-validator');
 
 var user = require('./routes/user-routes');
+var admin = require('./routes/admin-routes');
 var app = express();
 
 app.use(express.static(__dirname + '/assets'));
@@ -66,7 +67,10 @@ app.get('/', function(req, res) {
 app.post('/user', user.addUser);
 app.get('/user', user.getUser);
 app.get('/userinsession', user.getUserFromSession);
+app.get('/admin',admin.getUserFromSession)
+app.post('/updatepw',admin.updateuser)
 app.get('/logout', user.logout);
+
 
 // Start the server
 app.listen(3000);

@@ -4,7 +4,8 @@
 	<meta charset="utf-8">
 	<title>uTutor - Admin Dashboard</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="../css/admin.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script src="../scripts/AdminDashboard.js"></script>
 </head>
 <body>
@@ -32,9 +33,45 @@
 	Admin Dashboard Page
 	===================================================-->
     <div class="container">
-    	<div class="row">
-		Admin Dashboard
+    	<div id="top_table" class="menu">
+		    <ul>
+		        <li><a name="nav" href="#Change_PW" id="button_PW">Change PassWord</a></li>
+		        <li><a name="nav" href="#Add" id="button_add">Add Users</a></li>
+		        <li><a name="nav" href="#update" id="button_update">Update Users</a></li>        
+		        <li><a name="nav" href="#remove" id="button_rm_fname">Remove Users</a></li>
+		        <li><a name="nav" href="#init_db" id="button_init_db">Initialize DataBase</a></li>
+		        <li><a name="nav" href="#repop_db" id="button_repop_db">Repopulate DataBase</a></li>
+		    </ul>
 		</div>
+		<div class="main">
+			<div id="Change_PW">
+	        	<h2>Change PassWord</h2>
+
+	        	<form id="search_by" method="get">
+		            <label>
+		                <span class="label">Search by Username or Email:</span>
+		                <input type="text" id="infor" name="infor">
+		            </label>
+		            <input id="search_by_Button" class="search_by_submit" type="submit" value="Submit">
+		        </form>
+
+		        <table>
+		            <thead>
+		            <tr>
+		                <th>Type</th>
+		                <th>Username</th>
+		                <th>Email</th>
+		                <th>Password</th>
+		            </tr>
+		            </thead>
+		            <tbody id="users_table">
+		            </tbody>
+		        </table>
+		        <br>
+		        <button id="edit">Edit</button>
+		        <button id="save">Save</button>
+	    	</div>
+	    </div>
 	</div>
 </body>
 </html>
