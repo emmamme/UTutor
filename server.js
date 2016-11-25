@@ -74,17 +74,17 @@ newAdmin.save(function(error, newAdmin) {
 	var response;
 	if (error) {
 		if (error.name === 'MongoError' && error.code === 11000) {
-			resposne = "Email already exists."
+			response = "Email already exists."
 		}
 		else if (error.name === 'ValidationError') {
-			resposne = error.errors[Object.keys(error.errors)[0]].message;
+			response = error.errors[Object.keys(error.errors)[0]].message;
 		}
 	}
 	else {
-		resposne = "Success";
+		response = "Success";
 	}
 
-	console.log(resposne);
+	console.log(response);
 })
 
 
