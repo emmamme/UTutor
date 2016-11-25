@@ -41,3 +41,4 @@ $(function() {
 ```
 2. Data validation (e.g. password) when updating user info on server side (Need to use Luas's code)
 3. Are initializing and repopulating database the same thing?
+4. Dynamic css
