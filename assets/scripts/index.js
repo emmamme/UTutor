@@ -39,7 +39,7 @@ function login() {
 		"email": email,
 		"password": password
 	};
-	
+
 	$.ajax({
 		url: "/user",
 		type: "GET",
@@ -69,13 +69,18 @@ function login() {
 // ======== Student register =================
 function studentRegister() {
 	var type = "student";
-	var username = $("#student_username").val();
-	var email = $("#student_email").val();
+	var username = $("#student_username").val().toLowerCase(); 
+	var email = $("#student_email").val().toLowerCase(); 
 	var password = $("#student_password").val();
 	var confirm_password = $("#student_confirm_password").val();
-	var skills = $("#student_skills").val();
-	var zipcode = $("#student_zipcode").val();
+	var skills = $("#student_skills").val().toLowerCase(); 
+	var zipcode = $("#student_zipcode").val().toLowerCase(); 
 	var about = $("#student_about").val();
+	
+	if (password != confirm_password) {
+		alert("Please enter the same password.");
+		return null; 
+	}
 	
 	var data = {
 		"type": type,
@@ -110,13 +115,18 @@ function studentRegister() {
 // ======== Tutor register =================
 function tutorRegister() {
 	var type = "tutor";
-	var username = $("#tutor_username").val();
-	var email = $("#tutor_email").val();
+	var username = $("#tutor_username").val().toLowerCase(); 
+	var email = $("#tutor_email").val().toLowerCase(); 
 	var password = $("#tutor_password").val();
 	var confirm_password = $("#tutor_confirm_password").val();
-	var skills = $("#tutor_skills").val();
-	var zipcode = $("#tutor_zipcode").val();
+	var skills = $("#tutor_skills").val().toLowerCase(); 
+	var zipcode = $("#tutor_zipcode").val().toLowerCase(); 
 	var about = $("#tutor_about").val();
+	
+	if (password != confirm_password) {
+		alert("Please enter the same password.");
+		return null; 
+	}
 	
 	var data = {
 		"type": type,
