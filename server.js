@@ -32,9 +32,10 @@ app.get('/', function(req, res) {
 app.post('/user', user.addUser);
 app.get('/user', user.getUser);
 app.get('/userinsession', user.getUserFromSession);
-
+// app.get('/tutorprofile',user.getProfile);
 app.get('/tutors',user.getTutors);
 app.get('/logout', user.logout);
+
 
 // Start the server
 app.listen(3000);

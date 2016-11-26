@@ -6,6 +6,73 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script src="../scripts/Search.js"></script>
+	<style>
+		/* Style the list */
+		ul.tab {
+		    list-style-type: none;
+		    margin: 0;
+		    padding: 0;
+		    overflow: hidden;
+		    border: 1px solid #ccc;
+		    background-color: #f1f1f1;
+		}
+
+		/* Float the list items side by side */
+		ul.tab li {float: left;}
+
+		/* Style the links inside the list items */
+		ul.tab li a {
+		    display: inline-block;
+		    color: black;
+		    text-align: center;
+		    padding: 14px 16px;
+		    text-decoration: none;
+		    transition: 0.3s;
+		    font-size: 17px;
+		}
+
+		/* Change background color of links on hover */
+		ul.tab li a:hover {background-color: #ddd;}
+
+		/* Create an active/current tablink class */
+		ul.tab li a:focus, .active {background-color: #ccc;}
+
+		/* Style the tab content */
+		.tabcontent {
+		    display: none;
+		    padding: 10px 12px;
+		    border: 1px solid #ccc;
+		    border-top: none;
+		}
+		.searchbar{
+			border-radius: 5px;
+			width:300px;
+			height:auto; 
+		}
+		.button{
+			border-radius: 5px;
+			background: #f1f1f1; 
+
+
+		}
+		#skill{
+			display:block;
+		}
+
+		.tutor{
+			border: 1px solid #ccc;
+			background-color: #f1f1f1;
+			margin-bottom: 10px;
+			margin-top: 10px;
+			padding-left:10px;
+			font-size:17px;
+		}
+		.tutorinfo{
+			padding-left: 20px;
+			border: 1px solid #ccc;
+		}
+	</style>
+
 </head>
 <body>
 	<!--===============================================
@@ -33,13 +100,24 @@
 	===================================================-->
     <div class="container">
     	<div class="row">
-		Search By Skills:
-		<input type = 'text' id = 'search' name = 'tutor'>
-		<button id='go'> GO!</button>
+    		<div>
+	    	<ul class = 'tab'>
+	    		<li><a href="javascript:void(0)" class="tablinks" onclick="searchtab(event, 'skill')">Skill</a></li>
+	    		<li><a href="javascript:void(0)" class="tablinks" onclick="searchtab(event, 'username')">Username</a></li>
+	    	</ul>
+	    	</div>
+	    	<div id = 'skill' class="tabcontent">
+				<input type = 'text' id = 'search' name = 'tutor' class = 'searchbar' placeholder = 'Enter a skill...'>
+				<button class = 'button' id='go'> GO!</button>
+			</div>
+			<div id = 'username' class="tabcontent">
+				<input type = 'text' id = 'searchByUsername' class = 'searchbar' name = 'tutor' placeholder = 'Enter a username...'>
+				<button class = 'button' id='goByUsername'> GO!</button>
+			</div>
 		</div>
 
-		<div>
-		<p id='result'>Results</p>
+		<div class="row">
+		<p id='result'></p>
 		</div>
 
 	</div>

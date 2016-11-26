@@ -85,11 +85,10 @@ exports.getUserFromSession = function(req, res) {
 	}
 };
 
-<<<<<<< HEAD
 exports.getTutors = function(req,res){
 	console.log("============= getTutors =================");
-	if (req.query.tutor){
-		var skill = req.query.tutor;
+	if (req.query.skill){
+		var skill = req.query.skill;
 		console.log(skill);
 		User.find({$and:[{type: 'tutor'},{skills: {$regex: ".*"+skill+".*"}}]}, function(err,user){
 			if(err){
@@ -101,16 +100,21 @@ exports.getTutors = function(req,res){
 			}
 		});
 	}
-};
-
-exports.getProfile = function(req,res){
-	console.log("============= getProfile =================");
-	if (req.query.email){
-		
+	else{
+		var tutor = req.query.tutor;
+		console.log(tutor);
+		User.find({$and: [{type: 'tutor'},{username: tutor}]},function(err,user){
+			if(err){
+				return res.send(err);
+			}
+			else{
+				return res.send(user);
+			}
+		})
 	}
 };
 
-=======
+
 /**
  * User logout - empty session
  *
@@ -122,4 +126,4 @@ exports.logout = function(req, res) {
 	req.session = null;
 	res.sendfile('index.html');
 };
->>>>>>> 05ca5783ea32a4aa267914e8a115a54d1a16112e
+
