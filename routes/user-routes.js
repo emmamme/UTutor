@@ -10,9 +10,10 @@ exports.addUser = function(req, res) {
 	console.log("============= addUser =============");
 	console.log(req.body);
 	
-	req.check('email', 'Invalid email address').isEmail();
-	req.assert('username', 'Invalid username').isAlphanumeric();
-	req.check('password', 'Password is too short').isLength({min: 4});
+	req.assert('email', 'Invalid email address').isEmail();
+	req.assert('username', 'Invalid username (must be alphanumeric)').isAlphanumeric();
+	req.assert('password', 'Password is too short').isLength({min: 4});
+	req.assert('password', 'Password must be alphanumeric').isAlphanumeric();
 	req.assert('skills', 'Invalid Skills').isSkills();
 	req.assert('zipcode', 'Invalid zip code address').isZipcode();
 	req.assert('about', 'About is too long').isLength({max: 2000});
@@ -55,7 +56,6 @@ exports.addUser = function(req, res) {
  */
 exports.getUser = function(req, res) {
 	console.log("============= getUser =================");
-	console.log(req.query.password)
 	User.findOne({email: req.query.email}, function(err, user) { 
 		if (err) {
 			console.log(err);
@@ -63,7 +63,6 @@ exports.getUser = function(req, res) {
 		}
 		
 		if (user) {
-			console.log(user.password)
 			if(req.query.password == user.password) {
 				req.session.email = user.email;
 				req.session.username = user.username;

@@ -37,8 +37,8 @@ var userSchema = new Schema(
 );
 
 // Doc for Mongoose Connections: http://mongoosejs.com/docs/connections
- mongoose.connect('mongodb://localhost/usersdb');
-// mongoose.connect('mongodb://ds021650.mlab.com:21650/heroku_7tg73962/usersdb');
+mongoose.connect('mongodb://localhost/usersdb');
+//mongoose.connect('mongodb://admin:admin@ds111188.mlab.com:11188/heroku_2nt9hwn2');
 
 // Doc for Mongoose Models: http://mongoosejs.com/docs/models
 module.exports = mongoose.model('User', userSchema);
