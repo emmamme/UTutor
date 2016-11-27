@@ -68,7 +68,9 @@ app.post('/user', user.addUser);
 app.get('/user', user.getUser);
 app.get('/userinsession', user.getUserFromSession);
 app.get('/admin',admin.getUserFromSession)
-app.post('/updatepw',admin.updateuser)
+app.post('/updatepw',admin.updatepw)
+app.post('/update',admin.updateuser)
+app.post('/rm',admin.rmuser)
 app.get('/logout', user.logout);
 
 
