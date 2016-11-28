@@ -8,7 +8,6 @@
     margin-top: -20px;
     margin-left: -80px;
     list-style-type: none;
-
 }
 
 .menu .active{
@@ -40,8 +39,8 @@ li a {
     margin-top:50px;
     font-family:"Helvetica";
     line-height: 200%;
-
 }
+
 form {
     border: 1px solid #ccc;
     padding: 2rem;
@@ -95,11 +94,10 @@ table{
 }
 
 
-
 h2 {
-
     margin-top: -50px;
 }
+
 .edittd
 {
     font-size:14px;
@@ -107,4 +105,19 @@ h2 {
     background-color:#ffffcc !important;
     border:solid 1px #000;
     padding:4px;
+}
+
+/* Responsive navigation bar and score table CSS */
+@media only screen and (max-width: 600px) {
+    /* For tablets: */
+    .menu {
+		float: right;
+		padding: 0;
+		position: relative;
+		width: 100%;
+    }
+	.main{
+		margin-left:0;
+		padding:0;
+	}
 }
