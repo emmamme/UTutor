@@ -144,3 +144,32 @@ exports.logout = function(req, res) {
 	res.sendfile('index.html');
 };
 
+exports.email = function(req, res) {
+	console.log("============= Email =================");
+	console.log(req.body);
+	
+	var nodemailer = require('nodemailer');
+
+	// create reusable transporter object using the default SMTP transport
+	var transporter = nodemailer.createTransport('smtps://csc309.ututor@gmail.com:ututor.csc309@smtp.gmail.com');
+
+	// setup e-mail data with unicode symbols
+	var mailOptions = {
+		from: req.body.fromemail, // sender address
+		to: req.body.toemail, // list of receivers
+		subject: req.body.subject, // Subject line
+		text: req.body.body // plaintext body
+	};
+
+	// send mail with defined transport object
+	transporter.sendMail(mailOptions, function(error, info){
+		if(error){
+			console.log(error);
+			return res.send(error);
+		}
+		return res.send("Success");
+	});
+	
+	
+};
+
