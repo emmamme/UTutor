@@ -1,0 +1,114 @@
+$(function() {
+	// ======== Switch between login, student register, and tutor registor forms =================
+	$('#student_register_form_link').click(function(e) {
+		$("#student_register_form").delay(100).fadeIn(100);
+ 		$("#login_form").fadeOut(100);
+		$('#login_form_link').removeClass('active');
+		$("#tutor_register_form").fadeOut(100);
+		$('#tutor_register_form_link').removeClass('active');
+		$(this).addClass('active');
+		e.preventDefault();
+	});
+	$('#tutor_register_form_link').click(function(e) {
+		$("#tutor_register_form").delay(100).fadeIn(100);
+ 		$("#login_form").fadeOut(100);
+		$('#login_form_link').removeClass('active');
+		$("#student_register_form").fadeOut(100);
+		$('#student_register_form_link').removeClass('active');
+		$(this).addClass('active');
+		e.preventDefault();
+	});
+
+});
+
+// ======== Student register =================
+function studentRegister() {
+	var type = "student";
+	var username = $("#student_username").val().toLowerCase(); 
+	var email = $("#student_email").val().toLowerCase(); 
+	var password = $("#student_password").val();
+	var confirm_password = $("#student_confirm_password").val();
+	var skills = $("#student_skills").val().toLowerCase(); 
+	var zipcode = $("#student_zipcode").val().toLowerCase(); 
+	var about = $("#student_about").val();
+	
+	if (password != confirm_password) {
+		alert("Please enter the same password.");
+		return null; 
+	}
+	
+	var data = {
+		"type": type,
+		"username": username,
+		"email": email,
+		"password": password,
+		"skills": skills,
+		"zipcode": zipcode,
+		"about": about
+	};
+	
+	$.ajax({
+		url: "/user",
+		type: "POST",
+		dataType: "text",
+		contentType: "application/json; charset=utf_8",
+		data: JSON.stringify(data),
+		success: function(response) {
+			if (response == "Success") {
+				window.location.href = "Search.html";
+			}
+			else {
+				alert(response);
+			}
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+			alert(xhr.responseText);
+		}
+	});
+}
+
+// ======== Tutor register =================
+function tutorRegister() {
+	var type = "tutor";
+	var username = $("#tutor_username").val().toLowerCase(); 
+	var email = $("#tutor_email").val().toLowerCase(); 
+	var password = $("#tutor_password").val();
+	var confirm_password = $("#tutor_confirm_password").val();
+	var skills = $("#tutor_skills").val().toLowerCase(); 
+	var zipcode = $("#tutor_zipcode").val().toLowerCase(); 
+	var about = $("#tutor_about").val();
+	
+	if (password != confirm_password) {
+		alert("Please enter the same password.");
+		return null; 
+	}
+	
+	var data = {
+		"type": type,
+		"username": username,
+		"email": email,
+		"password": password,
+		"skills": skills,
+		"zipcode": zipcode,
+		"about": about
+	};
+	
+	$.ajax({
+		url: "/user",
+		type: "POST",
+		dataType: "text",
+		contentType: "application/json; charset=utf_8",
+		data: JSON.stringify(data),
+		success: function(response) {
+			if (response == "Success") {
+				window.location.href = "TutorProfile.html";
+			}
+			else {
+				alert(response);
+			}
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+			alert(xhr.responseText);
+		}
+	});
+}

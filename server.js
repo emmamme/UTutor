@@ -101,8 +101,10 @@ app.get('/userinsession', user.getUserFromSession);
 app.get('/tutors',user.getTutors);
 
 app.get('/admin',admin.getUserFromSession)
+app.post('/updatepw',admin.updatepw)
+app.post('/update',admin.updateuser)
+app.post('/rm',admin.rmuser)
 app.post('/updatepw',admin.updateuser)
-
 app.get('/logout', user.logout);
 
 
