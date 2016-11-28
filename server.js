@@ -26,8 +26,6 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
 }));
 
-
-
 // We have to create custom validators:
 // Notice that customValidators is an object with methods defined for
 // each of the inputs we want to validate separately.
@@ -58,6 +56,37 @@ app.use(expressValidator({
         
     }
 })); // This line must be immediately after express.bodyParser()!
+
+// Initiate Admin Account
+var User = require('./models/user');
+var data = {
+		"type": "admin",
+		"username": "admin",
+		"email": "admin@ututor.com",
+		"password": "admin",
+		"skills": "admin",
+		"zipcode": "m3c 2z3",
+		"about": ""
+	};
+var newAdmin = new User(data);
+newAdmin.save(function(error, newAdmin) {
+	console.log("============= Initiate Admin Account =============");
+	var response;
+	if (error) {
+		if (error.name === 'MongoError' && error.code === 11000) {
+			response = "Email already exists."
+		}
+		else if (error.name === 'ValidationError') {
+			response = error.errors[Object.keys(error.errors)[0]].message;
+		}
+	}
+	else {
+		response = "Success";
+	}
+
+	console.log(response);
+})
+
 
 // Get the index page:
 app.get('/', function(req, res) {

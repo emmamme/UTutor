@@ -9,7 +9,6 @@
     margin-top: -20px;
     margin-left: -10px;
     list-style-type: none;
-
 }
 
 .menu .active{
@@ -41,8 +40,8 @@ li a {
     margin-top:20px;
     font-family:"Helvetica";
     line-height: 200%;
-
 }
+
 form {
     border: 1px solid #ccc;
     padding: 2rem;
@@ -99,11 +98,10 @@ th, td {
 tr:hover{background-color:#f5f5f5}
 
 
-
 h2 {
-
     margin-top: 0px;
 }
+
 .edittd
 {
     font-size:14px;
@@ -112,10 +110,26 @@ h2 {
     border:solid 1px #000;
     padding:4px;
 }
+
 p{
     font-size: 25px;
     color:#53A3CD;
 }
 #pwtable{
     margin-top: 20px;
+}
+
+/* Responsive navigation bar and score table CSS */
+@media only screen and (max-width: 600px) {
+    /* For tablets: */
+    .menu {
+		float: right;
+		padding: 0;
+		position: relative;
+		width: 100%;
+    }
+	.main{
+		margin-left:0;
+		padding:0;
+	}
 }
