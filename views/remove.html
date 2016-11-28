@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/admin.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-	<script src="../scripts/AdminDashboard.js"></script>
+	<script src="../scripts/remove.js"></script>
 </head>
 <body>
 	<!--===============================================
@@ -44,8 +44,8 @@
 	</div>
 	<div class="main">
 		
-		<div id="Change_PW">
-        	<h2>Change PassWord</h2>
+		<div id="update">
+        	<h2>Remove Users</h2>
         	<form id="search_by" method="get">
 	            <label>
 	                <span class="label">Search by Username or Email:</span>
@@ -54,19 +54,25 @@
 	            <input id="search_by_Button" class="search_by_submit" type="submit" value="Search">
 	        </form>
 
-	        <table id="pwtable" style="display: none;">
-	            <thead>
-	            <tr>
-	                <th>Type</th>
-	                <th>Username</th>
-	                <th>Email</th>
-	                <th>Password</th>
-	            </tr>
-	            </thead>
-	            <tbody id="users_table">
-	            </tbody>
-	        </table>
-	        
+	        <div id="pwtable" style="display: none;">
+	        	<p>Press Any Cells To Edit</p>
+		        <table>
+		            <thead>
+		            <tr>
+		            	<th></th>
+		                <th>Type</th>
+		                <th>Username</th>
+		                <th>Email</th>
+		                <th>Password</th>
+		                <th>Skill</th>
+		                <th>Zip Code</th>
+		                <th>About</th>
+		            </tr>
+		            </thead>
+		            <tbody id="users_table">
+		            </tbody>
+		        </table>
+		    </div>
     	</div>
     </div>			
 </body>
