@@ -5,74 +5,9 @@
 	<title>uTutor - Search</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="../scripts/Search.js"></script>
-	<style>
-		/* Style the list */
-		ul.tab {
-		    list-style-type: none;
-		    margin: 0;
-		    padding: 0;
-		    overflow: hidden;
-		    border: 1px solid #ccc;
-		    background-color: #f1f1f1;
-		}
-
-		/* Float the list items side by side */
-		ul.tab li {float: left;}
-
-		/* Style the links inside the list items */
-		ul.tab li a {
-		    display: inline-block;
-		    color: black;
-		    text-align: center;
-		    padding: 14px 16px;
-		    text-decoration: none;
-		    transition: 0.3s;
-		    font-size: 17px;
-		}
-
-		/* Change background color of links on hover */
-		ul.tab li a:hover {background-color: #ddd;}
-
-		/* Create an active/current tablink class */
-		ul.tab li a:focus, .active {background-color: #ccc;}
-
-		/* Style the tab content */
-		.tabcontent {
-		    display: none;
-		    padding: 10px 12px;
-		    border: 1px solid #ccc;
-		    border-top: none;
-		}
-		.searchbar{
-			border-radius: 5px;
-			width:300px;
-			height:auto; 
-		}
-		.button{
-			border-radius: 5px;
-			background: #f1f1f1; 
-
-
-		}
-		#skill{
-			display:block;
-		}
-
-		.tutor{
-			border: 1px solid #ccc;
-			background-color: #f1f1f1;
-			margin-bottom: 10px;
-			margin-top: 10px;
-			padding-left:10px;
-			font-size:17px;
-		}
-		.tutorinfo{
-			padding-left: 20px;
-			border: 1px solid #ccc;
-		}
-	</style>
-
+	<link rel="stylesheet" href="../css/search.css">
 </head>
 <body>
 	<!--===============================================
@@ -102,7 +37,7 @@
     	<div class="row">
     		<div>
 	    	<ul class = 'tab'>
-	    		<li><a href="javascript:void(0)" class="tablinks" onclick="searchtab(event, 'skill')">Skill</a></li>
+	    		<li><a href="javascript:void(0)" class="tablinks active" onclick="searchtab(event, 'skill')">Skill</a></li>
 	    		<li><a href="javascript:void(0)" class="tablinks" onclick="searchtab(event, 'username')">Username</a></li>
 	    	</ul>
 	    	</div>
@@ -118,6 +53,56 @@
 
 		<div class="row">
 		<p id='result'></p>
+		</div>
+		
+		<!-- Email Popup -->
+		<div class="modal fade" id="emailPopup" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Modal Header</h4>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal" role="form" method="post" action="index.php">
+							<div class="form-group">
+								<label for="name" class="col-sm-2 control-label">From: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="fromemail" name="fromemail" value="" readonly>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="email" class="col-sm-2 control-label">To: </label>
+								<div class="col-sm-10">
+									<input type="email" class="form-control" id="toemail" name="toemail" value="" readonly>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="subject" class="col-sm-2 control-label">Subject: </label>
+								<div class="col-sm-10">
+									<input type="subject" class="form-control" id="subject" name="subject" value="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="message" class="col-sm-2 control-label">Message: </label>
+								<div class="col-sm-10">
+									<textarea class="form-control" rows="4" id="message" name="message"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-10 col-sm-offset-2">
+									<input type="button" onclick="sendEmail()" class="btn btn-primary" value="Send">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-10 col-sm-offset-2">
+									<! Will be used to display an alert to the user>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
 
 	</div>

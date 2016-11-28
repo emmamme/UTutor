@@ -40,7 +40,15 @@ $(function() {
                 for (let i=0; i<l; i++){
                     //tmp += '<li><a href="#">'+response[i]['username']+'</a></li><br><p>'+response[i]['skills']+'</p>'
                     tmp += '<li><div class = "tutor" id = "user'+i+'" value ='+response[i]["email"]+'><span>'+response[i]['username']+'</span></div>';
-                    tmp += '<div class = tutorinfo><p>Email: '+response[i]['email']+'</p><p>Skills: '+response[i]['skills']+'</p><p>Zipcode: '+response[i]['zipcode']+'</p><p>About: '+response[i]['about']+'</p></div></li>';
+                    tmp += '<ul class = "list-group tutorinfo">'
+						+ '<li class = "list-group-item">Email: '+response[i]['email']+'</li>' 
+						+ '<li class = "list-group-item">Skills: '+response[i]['skills']+'</li>'
+						+ '<li class = "list-group-item">Zipcode: '+response[i]['zipcode']+'</li>' 
+						+ '<li class = "list-group-item">About: '+response[i]['about']+'</li>'
+						+ '<li class = "list-group-item">'
+						+ '<button type="button" class="button" data-toggle="modal" data-target="#emailPopup" onclick="EmailBox(\'' + response[i]['email'] + '\')">Email Me!</button>'
+						+ '</li>'
+						+ '</ul></li>';
                 }
                 console.log(tmp);
                 $('#result').append(tmp);
@@ -68,7 +76,15 @@ $(function() {
                 for (let i=0; i<l; i++){
                     //tmp += '<li><a href="#">'+response[i]['username']+'</a></li><br><p>'+response[i]['skills']+'</p>'
                     tmp += '<li><div class = "tutor" id = "user'+i+'" value ='+response[i]["email"]+'><span>'+response[i]['username']+'</span></div>';
-                    tmp += '<div class = tutorinfo><p>Email: '+response[i]['email']+'</p><p>Skills: '+response[i]['skills']+'</p><p>Zipcode: '+response[i]['zipcode']+'</p><p>About: '+response[i]['about']+'</p></div></li>';
+                    tmp += '<ul class = "list-group tutorinfo">'
+						+ '<li class = "list-group-item">Email: '+response[i]['email']+'</li>' 
+						+ '<li class = "list-group-item">Skills: '+response[i]['skills']+'</li>'
+						+ '<li class = "list-group-item">Zipcode: '+response[i]['zipcode']+'</li>' 
+						+ '<li class = "list-group-item">About: '+response[i]['about']+'</li>'
+						+ '<li class = "list-group-item">'
+						+ '<button type="button" class="button" data-toggle="modal" data-target="#emailPopup" onclick="EmailBox(\'' + response[i]['email'] + '\')">Email Me!</button>'
+						+ '</li>'
+						+ '</ul></li>';
                 }
                 console.log(tmp);
                 $('#result').append(tmp);
@@ -92,6 +108,62 @@ $(function() {
         searchByUsername();
     });
 });
+
+function sendEmail() {
+	var toemail = $("#toemail").val().toLowerCase(); 
+	var fromemail = $("#fromemail").val().toLowerCase();
+	var subject = $("#subject").val();
+	var body = $("#message").val();
+	
+	var data = {
+		"toemail": toemail,
+		"fromemail": fromemail,
+		"subject": subject,
+		"body": body
+	};
+	
+	$.ajax({
+		url: "/email",
+		type: "POST",
+		dataType: "text",
+		contentType: "application/json; charset=utf_8",
+		data: JSON.stringify(data),
+		success: function(response) {
+			if (response == "Success") {
+				$(".close").click();
+			}
+			else {
+				console.log(response);
+				alert(response);
+			}
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+			alert(xhr.responseText);
+		}
+	});
+}
+
+function EmailBox(toemail) {
+	$.ajax({
+		url: "/userinsession",
+		type: "GET",
+		dataType: "json",
+		contentType: "application/json; charset=utf-8",
+		success: function(response) {
+			if (response['type'] !== '' && response['email'] != "") {
+				$("input[name=fromemail").val(response['username'] + " (" + response['email'] + ")");
+			}
+			else {
+				window.location.href = "../index.html";
+			}
+		},
+		error: function (xhr) {
+			alert(xhr.responseText);
+		}
+	});
+	
+	$("input[name=toemail").val(toemail);
+}
 
 function searchtab(evt, method){
         // Declare all variables
