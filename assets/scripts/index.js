@@ -48,7 +48,7 @@ function login() {
 		data: data,
 		success: function(response) {
 			if (response == "tutor") {
-				window.location.href = "views/TutorProfile.html";
+				window.location.href = "views/Profile.html";
 			}
 			else if (response == "admin") {
 				window.location.href = "views/AdminDashboard.html";
@@ -146,7 +146,7 @@ function tutorRegister() {
 		data: JSON.stringify(data),
 		success: function(response) {
 			if (response == "Success") {
-				window.location.href = "views/TutorProfile.html";
+				window.location.href = "views/Profile.html";
 			}
 			else {
 				alert(response);

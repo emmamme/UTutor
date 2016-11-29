@@ -13,7 +13,7 @@ $(function() {
             dataType: "json",
             contentType: "application/json; charset=utf-8",
             success: function(response) {
-                if (response['type'] == 'tutor' && response['email'] != "") {
+                if (response['type'] != "" && response['email'] != "") {
 					$(".ututor_user").text(response['username'] + " (" + response['email'] + ")");
 				}
 				else {
