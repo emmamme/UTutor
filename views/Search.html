@@ -8,6 +8,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="../scripts/Search.js"></script>
 	<link rel="stylesheet" href="../css/search.css">
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmkUelpBJLbIYEmYOz6Cie2t-49gqrlZs&callback=initMap"></script>
 </head>
 <body>
 	<!--===============================================
@@ -20,7 +21,7 @@
 			</div>
 
 			<ul class="nav navbar-nav links">
-				<li><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-home"></span> Search</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right links">
 				<li><a>Hello, <span class="ututor_user"></span></a></li>
@@ -50,9 +51,12 @@
 				<button class = 'button' id='goByUsername'> GO!</button>
 			</div>
 		</div>
-
+		
 		<div class="row">
-		<p id='result'></p>
+			<div id="map">
+			</div>
+			<div id='result'>
+			</div>
 		</div>
 		
 		<!-- Email Popup -->
@@ -92,11 +96,6 @@
 							<div class="form-group">
 								<div class="col-sm-10 col-sm-offset-2">
 									<input type="button" onclick="sendEmail()" class="btn btn-primary" value="Send">
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-10 col-sm-offset-2">
-									<! Will be used to display an alert to the user>
 								</div>
 							</div>
 						</form>

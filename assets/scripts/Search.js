@@ -12,7 +12,7 @@ $(function() {
 			dataType: "json",
 			contentType: "application/json; charset=utf-8",
 			success: function(response) {
-				if (response['type'] == 'student' && response['email'] != "") {
+				if (response['type'] != "" && response['email'] != "") {
 					$(".ututor_user").text(response['username'] + " (" + response['email'] + ")");
 				}
 				else {
@@ -26,7 +26,14 @@ $(function() {
         
     }
 
+	
+	
+	
     function searchBySkill(){
+		for (var i = 0; i < markers.length; i++) {
+			markers[i].setMap(null);
+        }
+		markers = [];
         var skill = $('#search').val().toLowerCase();
         $.ajax({
             url:'/tutors?skill='+skill,
@@ -49,6 +56,7 @@ $(function() {
 						+ '<button type="button" class="button" data-toggle="modal" data-target="#emailPopup" onclick="EmailBox(\'' + response[i]['email'] + '\')">Email Me!</button>'
 						+ '</li>'
 						+ '</ul></li>';
+					addMarker(response[i]['username'], response[i]['email'],response[i]['skills'], response[i]['zipcode'], response[i]['about']);
                 }
                 console.log(tmp);
                 $('#result').append(tmp);
@@ -63,6 +71,10 @@ $(function() {
     }
 
     function searchByUsername(){
+		for (var i = 0; i < markers.length; i++) {
+			markers[i].setMap(null);
+        }
+		markers = [];
         var tutor = $('#searchByUsername').val().toLowerCase();
         $.ajax({
             url:'/tutors?tutor='+tutor,
@@ -85,6 +97,7 @@ $(function() {
 						+ '<button type="button" class="button" data-toggle="modal" data-target="#emailPopup" onclick="EmailBox(\'' + response[i]['email'] + '\')">Email Me!</button>'
 						+ '</li>'
 						+ '</ul></li>';
+					addMarker(response[i]['username'], response[i]['email'],response[i]['skills'], response[i]['zipcode'], response[i]['about']);
                 }
                 console.log(tmp);
                 $('#result').append(tmp);
@@ -108,6 +121,8 @@ $(function() {
         searchByUsername();
     });
 });
+
+
 
 function sendEmail() {
 	var toemail = $("#toemail").val().toLowerCase(); 
@@ -185,6 +200,60 @@ function searchtab(evt, method){
     document.getElementById(method).style.display = "block";
     evt.currentTarget.className += " active";
 
-    }
+}
+
+var map = null; 
+var markers = [];
+
+function initMap() {
+	map = new google.maps.Map(document.getElementById('map'), {
+		zoom: 8,
+		center: {lat : 43.653226, lng : -79.3831843}
+	});
+}
+
+function addMarker(username, email, skills, zipcode, about) {
+
+	var contentString = '<div id="content">'+
+            '<div id="siteNotice">'+
+			'<div><span>'+username+'</span></div>'
+					+ '<ul class = "list-group tutorinfo">'
+					+ '<li class = "list-group-item">Email: '+email+'</li>' 
+					+ '<li class = "list-group-item">Skills: '+skills+'</li>'
+					+ '<li class = "list-group-item">Zipcode: '+zipcode+'</li>' 
+					+ '<li class = "list-group-item">About: '+about+'</li>'
+					+ '<li class = "list-group-item">'
+					+ '<button type="button" class="button" data-toggle="modal" data-target="#emailPopup" onclick="EmailBox(\'' + email + '\')">Email Me!</button>'
+					+ '</li>'
+					+ '</ul>' +
+            '</div>'+
+            '</div>';
+	
+	var infowindow = new google.maps.InfoWindow({
+		content: contentString
+	});
+	
+	var geocoder = new google.maps.Geocoder();
+	
+	geocoder.geocode({'address': zipcode}, function(results, status) {
+		if (status === 'OK') {
+			map.setCenter(results[0].geometry.location);
+			var marker = new google.maps.Marker({
+				map: map,
+				position: results[0].geometry.location,
+				title: username
+			});
+			
+			marker.addListener('click', function() {
+				infowindow.open(map, marker);
+			});
+			
+			markers.push(marker);
+		} else {
+			alert('Geocode was not successful for the following reason: ' + status);
+		}
+	});
+}
+
 
 

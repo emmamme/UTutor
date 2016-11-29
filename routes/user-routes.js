@@ -155,10 +155,9 @@ exports.email = function(req, res) {
 
 	// setup e-mail data with unicode symbols
 	var mailOptions = {
-		from: req.body.fromemail, // sender address
 		to: req.body.toemail, // list of receivers
 		subject: req.body.subject, // Subject line
-		text: req.body.body // plaintext body
+		text: "A message sent by " + req.body.fromemail + ":\n" + req.body.body // plaintext body
 	};
 
 	// send mail with defined transport object
