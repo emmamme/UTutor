@@ -102,6 +102,27 @@ exports.getUserFromSession = function(req, res) {
 	}
 };
 
+
+
+exports.getTutorFromSession = function(req, res) {
+	console.log("============= Tutor=================");
+	if (req.session.email) {
+		var infor = req.session.email;
+		User.find({email:infor}, function(err,result){
+			if(err){
+				return res.send(err);
+			}
+			else{
+				console.log(result);
+				return res.send(result);
+			}
+		})
+		
+	} 
+	
+};
+
+
 exports.getTutors = function(req,res){
 	console.log("============= getTutors =================");
 	if (req.query.skill){
