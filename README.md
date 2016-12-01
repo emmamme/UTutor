@@ -2,6 +2,11 @@
 
 ## Main Page: __[http://csc309-ututor.herokuapp.com/](http://csc309-ututor.herokuapp.com/)__
 
+Admin Account:
+
+    Email: admin@ututor.com
+    Password: admin
+
 ## To Run Locally:
 1. Create a folder called "__data__" in the main folder
 2. Run
