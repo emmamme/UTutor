@@ -27,8 +27,6 @@ $(function() {
     }
 
 	
-	
-	
     function searchBySkill(){
 		for (var i = 0; i < markers.length; i++) {
 			markers[i].setMap(null);
@@ -42,6 +40,12 @@ $(function() {
             contentType:'application/json; charset=utf-8',
             success: function(response){
                 //display the tutor list
+
+                if (response.length == 0){
+
+                	tmp = 'No tutor found!'
+                }
+                else{
                 var tmp = '';
                 var l = response.length;
                 for (let i=0; i<l; i++){
@@ -52,12 +56,18 @@ $(function() {
 						+ '<li class = "list-group-item">Skills: '+response[i]['skills']+'</li>'
 						+ '<li class = "list-group-item">Zipcode: '+response[i]['zipcode']+'</li>' 
 						+ '<li class = "list-group-item">About: '+response[i]['about']+'</li>'
+
+						+ '<li class = "list-group-item"><button type="button" class="button glyphicon glyphicon-thumbs-up" onclick="updateLike(this,\''+response[i]["email"]+'\')">  '+response[i]['like']+'</button>'
+						+ '<button type="button" class="button glyphicon glyphicon-thumbs-down" onclick="updateDislike(this,\''+response[i]["email"]+'\')">  '+response[i]['dislike']+'</button></li>'
+
 						+ '<li class = "list-group-item">'
 						+ '<button type="button" class="button" data-toggle="modal" data-target="#emailPopup" onclick="EmailBox(\'' + response[i]['email'] + '\')">Email Me!</button>'
 						+ '</li>'
 						+ '</ul></li>';
 					addMarker(response[i]['username'], response[i]['email'],response[i]['skills'], response[i]['zipcode'], response[i]['about']);
-                }
+                	}
+            	}
+
                 console.log(tmp);
                 $('#result').append(tmp);
                 $('.tutorinfo').css('display','none');
@@ -66,9 +76,11 @@ $(function() {
                     $content = $user.next();
                     $content.slideToggle(500);
                 });
+                $()
             }
         });
     }
+
 
     function searchByUsername(){
 		for (var i = 0; i < markers.length; i++) {
@@ -83,6 +95,11 @@ $(function() {
             contentType:'application/json; charset=utf-8',
             success: function(response){
                 //display the tutor list
+                if (response.length == 0){
+
+                	tmp = 'Username does not exist!'
+                }
+                else{
                 var tmp = '';
                 var l = response.length;
                 for (let i=0; i<l; i++){
@@ -93,12 +110,17 @@ $(function() {
 						+ '<li class = "list-group-item">Skills: '+response[i]['skills']+'</li>'
 						+ '<li class = "list-group-item">Zipcode: '+response[i]['zipcode']+'</li>' 
 						+ '<li class = "list-group-item">About: '+response[i]['about']+'</li>'
+
+						+ '<li class = "list-group-item"><<button type="button" class="button glyphicon glyphicon-thumbs-up" onclick="updateLike(this,\''+response[i]["email"]+'\')">  '+response[i]['like']+'</button>'
+						+ '<button type="button" class="button glyphicon glyphicon-thumbs-down" onclick="updateDislike(this,\''+response[i]["email"]+'\')">  '+response[i]['dislike']+'</button></li>'
+
 						+ '<li class = "list-group-item">'
 						+ '<button type="button" class="button" data-toggle="modal" data-target="#emailPopup" onclick="EmailBox(\'' + response[i]['email'] + '\')">Email Me!</button>'
 						+ '</li>'
 						+ '</ul></li>';
 					addMarker(response[i]['username'], response[i]['email'],response[i]['skills'], response[i]['zipcode'], response[i]['about']);
-                }
+                	}
+           		}
                 console.log(tmp);
                 $('#result').append(tmp);
                 $('.tutorinfo').css('display','none');
@@ -122,7 +144,45 @@ $(function() {
     });
 });
 
+function updateLike(el, email){
+	var content = $(el);
+	console.log(content);
+	console.log(email);
+	$.ajax({
+		url:'/updateLike?email='+email,
+		type:'GET',
+		dataType:'json',
+		contentType:'application/json; charset=utf-8',
+		success: function(response){
+			var like = response['like'];
+			var results = '  '+like;
+			content.text(results);
+		}
+	});
+	//console.log(like);
+	//$(this).attr('value') = 'Likes '+ like;
+	console.log('request is sent');
+}
 
+function updateDislike(el, email){
+	var content = $(el);
+	console.log(content);
+	console.log(email);
+	$.ajax({
+		url:'/updateDislike?email='+email,
+		type:'GET',
+		dataType:'json',
+		contentType:'application/json; charset=utf-8',
+		success: function(response){
+			var dislike = response['dislike'];
+			var results = '  '+dislike;
+			content.text(results);
+		}
+	});
+	//console.log(like);
+	//$(this).attr('value') = 'Likes '+ like;
+	console.log('request is sent');
+}
 
 function sendEmail() {
 	var toemail = $("#toemail").val().toLowerCase(); 
@@ -158,7 +218,10 @@ function sendEmail() {
 	});
 }
 
+
+
 function EmailBox(toemail) {
+
 	$.ajax({
 		url: "/userinsession",
 		type: "GET",
