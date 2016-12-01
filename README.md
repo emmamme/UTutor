@@ -39,3 +39,69 @@ Admin Account:
   1. Edit their own profiles except email
   2. Can search for tutors by username or by skills
   3. Search results will be displayed on google map and in a list
+
+## Features:
+__1. Input Validation__
+  1. __Server-side validation__ using express-validator
+  2. Used a few built-in functions such as isEmail, isLength
+  3. Customized the following two:
+ ```JavaScript
+  customValidators: {
+
+	isZipcode: function(value) {
+		return value.search( /[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]/ ) !== -1;
+    },
+	isSkills: function(value) {
+		if (value.search( /^[0-9a-zA-Z ]{1,20}(,[0-9a-zA-Z ]{1,20})*$/ ) !== -1) {
+			var array = value.split(',');
+			var noEmptyValue = true;
+			array.forEach(function(part, index, theArray) {
+				theArray[index] = theArray[index].trim();
+				console.log("Length: "+ theArray[index].length);
+				if (theArray[index].length < 1) {
+					noEmptyValue = false;
+					return;
+				}
+			});
+			return noEmptyValue;
+		}
+		else {
+			return false;
+		}
+    }
+```
+  4. MongoDB Model validation with customized error message. Example:
+```JavaScript
+        skills: {
+            type: String, required: [true, 'Skills required']
+        },
+        zipcode: {
+            type: String, required: [true, 'Zipcode required']
+        }
+```
+__2. Page Authentication__
+
+In case of a user going to an unauthorized url (i.e. [http://csc309-ututor.herokuapp.com/views/AdminDashboard.html](http://csc309-ututor.herokuapp.com/views/AdminDashboard.html)) before logging in, we have the following fuction to check if the user has the privilege to view the page.
+  
+It sends a GET request to the server to check if the session is empty and the user type is "admin"
+```JavaScript
+function getUserFromSession() {
+        $.ajax({
+            url: "/userinsession",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function(response) {
+                if (response['type'] == "admin" && response['email'] != "") {
+                    $(".ututor_user").text(response['username'] + " (" + response['email'] + ")");
+                    
+                }
+                else {
+                    window.location.href = "../index.html";
+                }
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+});
+```
