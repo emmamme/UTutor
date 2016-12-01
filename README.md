@@ -116,3 +116,7 @@ Since we have postal code for each user, it allows us to display them on a map.
 __4. Email function with nodemailer__
 
 For each tutor in search result,  there is a button "Email Me" which allows a user to send email to the tutor through our application email. 
+
+__5. Like and Dislike a Tutor__
+
+In the search result, a tutor can be liked or disliked. Number of likes and dislikes are recorded in database.
