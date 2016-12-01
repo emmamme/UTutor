@@ -79,6 +79,7 @@ __1. Input Validation__
             type: String, required: [true, 'Zipcode required']
         }
 ```
+
 __2. Page Authentication__
 
 In case of a user going to an unauthorized url (i.e. [http://csc309-ututor.herokuapp.com/views/AdminDashboard.html](http://csc309-ututor.herokuapp.com/views/AdminDashboard.html)) before logging in, we have the following fuction to check if the user has the privilege to view the page.
@@ -105,3 +106,13 @@ function getUserFromSession() {
             }
 });
 ```
+
+__3. Google Map API__
+
+Since we have postal code for each user, it allows us to display them on a map.
+  1. We first use Google's Geocoding API to convert the postal codes of the users from search result to longitude and latitude which is the only allowed input for Google Map API
+  2. Then we mark them on the map with information box.
+  
+__4. Email function with nodemailer__
+
+For each tutor in search result,  there is a button "Email Me" which allows a user to send email to the tutor through our application email. 
