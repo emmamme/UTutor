@@ -94,6 +94,46 @@ exports.rmuser = function(req,res) {
 	}
 }
 
+exports.init = function(req, res) {
+
+	User.remove({},function (err){
+		if (err){
+
+			res.send(err);
+		}
+		else{
+			var data = {
+			"type": "admin",
+			"username": "admin",
+			"email": "admin@ututor.com",
+			"password": "admin",
+			"skills": "admin",
+			"zipcode": "m3c 2z3",
+			"about": ""
+			};
+			var newAdmin = new User(data);
+			newAdmin.save(function(error, newAdmin) {
+				console.log("============= Initiate Admin Account =============");
+				var response;
+				if (error) {
+					if (error.name === 'MongoError' && error.code === 11000) {
+						response = "Email already exists."
+					}
+					else if (error.name === 'ValidationError') {
+						response = error.errors[Object.keys(error.errors)[0]].message;
+					}
+				}
+				else {
+					response = "Success";
+				}
+
+				console.log(response);
+			})
+			res.send("Initialize data Successfully");
+		}
+	});
+	
+}
 
 
 

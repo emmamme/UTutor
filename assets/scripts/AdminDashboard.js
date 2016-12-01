@@ -1,5 +1,6 @@
 "use strict"
 
+
 $(function() {
 	getUserFromSession();
 	
@@ -103,8 +104,9 @@ function SavePW(){
         alert(`${data}`)
     })
 
-
 }
+
+
 
 $(document).ready(function() {
 
@@ -112,6 +114,15 @@ $(document).ready(function() {
     // Get all the forms elements and their values in one step
         $('#pwtable').css('display', 'block')
         Search(e)
+    })
+
+    $("#button_init_db").click(function(){
+
+        var url = "/init";
+        $.get(url, function (data) {
+            alert(data);
+        })      
+
     })
 
 });

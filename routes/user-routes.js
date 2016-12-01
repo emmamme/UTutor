@@ -1,3 +1,4 @@
+"use strict"
 var User = require('../models/user');
 
 /**
@@ -31,20 +32,20 @@ exports.addUser = function(req, res) {
 		var response;
         if (error) {
 			if (error.name === 'MongoError' && error.code === 11000) {
-				resposne = "Email already exists."
+				response = "Email already exists."
 			}
 			else if (error.name === 'ValidationError') {
-				resposne = error.errors[Object.keys(error.errors)[0]].message;
+				response = error.errors[Object.keys(error.errors)[0]].message;
 			}
 		}
 		else {
-			resposne = "Success";
+			response = "Success";
 			req.session.email = req.body.email;
 			req.session.username = req.body.username;
 			req.session.type = req.body.type;
 		}
 
-        res.send(resposne);
+        res.send(response);
     })
 };
 
@@ -102,6 +103,27 @@ exports.getUserFromSession = function(req, res) {
 	}
 };
 
+
+
+exports.getTutorFromSession = function(req, res) {
+	console.log("============= Tutor=================");
+	if (req.session.email) {
+		var infor = req.session.email;
+		User.find({email:infor}, function(err,result){
+			if(err){
+				return res.send(err);
+			}
+			else{
+				console.log(result);
+				return res.send(result);
+			}
+		})
+		
+	} 
+	
+};
+
+
 exports.getTutors = function(req,res){
 	console.log("============= getTutors =================");
 	if (req.query.skill){
@@ -130,6 +152,25 @@ exports.getTutors = function(req,res){
 		})
 	}
 };
+
+
+exports.updateprofile = function(req,res){
+
+	console.log(req.body)
+	let data = req.body.data
+	if(data){
+		
+			let email = data.email
+			let password = data.password	
+			let about = data.about
+			let zipcode = data.zipcode
+			let skills = data.skills
+			let username = data.username
+			User.update({"email": email},{$set: {"password":password,"about":about,"username":username,"email":email,"zipcode":zipcode,"skills":skills}},function (err, result) {
+		   });
+		
+	}
+}
 
 exports.updateLike = function(req,res){
 	console.log('============= updateLike =================');
