@@ -32,20 +32,20 @@ exports.addUser = function(req, res) {
 		var response;
         if (error) {
 			if (error.name === 'MongoError' && error.code === 11000) {
-				resposne = "Email already exists."
+				response = "Email already exists."
 			}
 			else if (error.name === 'ValidationError') {
-				resposne = error.errors[Object.keys(error.errors)[0]].message;
+				response = error.errors[Object.keys(error.errors)[0]].message;
 			}
 		}
 		else {
-			resposne = "Success";
+			response = "Success";
 			req.session.email = req.body.email;
 			req.session.username = req.body.username;
 			req.session.type = req.body.type;
 		}
 
-        res.send(resposne);
+        res.send(response);
     })
 };
 
