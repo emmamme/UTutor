@@ -38,13 +38,11 @@ function getTutorFromSession() {
         contentType: "application/json; charset=utf-8",
         success: function(data) {
             $('#email').text(data[0].email)
-            $('#username').text(data[0].username)
-            $('#password').text(data[0].password)
-            $('#zipcode').text(data[0].zipcode)
-            $('#interest').text(data[0].skills)
-            $('#about').text(data[0].about)
-            $('#username_head').text(data[0].username)
-            $("#sendemail").prop("href", `mailto:${data[0].email}`)
+            $('td[name=username]').text(data[0].username)
+            $('td[name=password').text(data[0].password)
+            $('td[name=zipcode').text(data[0].zipcode)
+            $('td[name=skills').text(data[0].skills)
+            $('td[name=about').text(data[0].about)
            
         },
         error: function (xhr) {
@@ -54,35 +52,39 @@ function getTutorFromSession() {
     
 }
 
-function EditPW() {
+function Edit() {
     
-    $("#password").each(function(){
+    $(".editable").each(function(){
         let cell = $(this);
         let email = $('#email').text()
+        let id = cell.attr('name');
         if (!cell.hasClass("edittd")){
             let val = cell.html();
             cell
                 .toggleClass('edittd')
                 .html("")
-                .append(`<input type='text' class='updatePW' name=${email} value='`+val+"'></input>");
+                .append(`<input type='text' class='update' id=${id} name=${email} value='`+val+"'></input>");
         }
     })
 }
 
-function SavePW(){
-    var data_send = [];
+function Save(){
+    var data_send = {};
     
-    $( ".updatePW" ).each(function() {
-            let tmp = {"email":$(this).attr("name"), "password":$(this).val()}
-            data_send.push(tmp);
+    $( ".update" ).each(function() {
+            var email = $(this).attr("name");
+            let id = $(this).attr("id");
+            data_send[id] = $(this).val()
+            data_send["email"] = email
+            
     });
-    
-    $.post("/updatepw", {data:data_send}, function(data){
+    console.log(data_send)
+    $.post("/updateprofile", {data:data_send}, function(data){
         alert(`${data}`)
     })
-
-
 }
+
+
 
 $(document).ready(function() {
 
@@ -90,14 +92,14 @@ $(document).ready(function() {
    getTutorFromSession();
 
    $("#edit").click(function(){
-        EditPW();
+        Edit();
 
     })
 
    $("#save").click(function(){
-        SavePW();
+        Save();
         getTutorFromSession();
-        $('#password').removeClass("edittd");
+        $('.edittd').removeClass("edittd");
 
     })
 

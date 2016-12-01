@@ -1,3 +1,4 @@
+"use strict"
 var User = require('../models/user');
 
 /**
@@ -151,6 +152,24 @@ exports.getTutors = function(req,res){
 		})
 	}
 };
+
+exports.updateprofile = function(req,res){
+
+	console.log(req.body)
+	let data = req.body.data
+	if(data){
+		
+			let email = data.email
+			let password = data.password	
+			let about = data.about
+			let zipcode = data.zipcode
+			let skills = data.skills
+			let username = data.username
+			User.update({"email": email},{$set: {"password":password,"about":about,"username":username,"email":email,"zipcode":zipcode,"skills":skills}},function (err, result) {
+		   });
+		
+	}
+}
 
 
 /**
