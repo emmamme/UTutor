@@ -98,6 +98,8 @@ app.get('/user', user.getUser);
 app.get('/userinsession', user.getUserFromSession);
 app.get('/logout', user.logout);
 app.post('/email', user.email);
+app.get('/updateLike', user.updateLike);
+app.get('/updateDislike', user.updateDislike);
 
 // app.get('/tutorprofile',user.getProfile);
 app.get('/tutors',user.getTutors);
