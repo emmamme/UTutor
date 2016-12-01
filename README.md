@@ -40,6 +40,31 @@ Admin Account:
   1. Edit their own profiles except email
   2. Can search for tutors by username or by skills
   3. Search results will be displayed on google map and in a list
+7. All data user entered are save into MongoDB database file
+
+## Features:
+__1. Google Map API__
+
+Since we have postal code for each user, it allows us to display them on a map.
+  1. We first use Google's Geocoding API to convert the postal codes of the users from search result to longitude and latitude which is the only allowed input for Google Map API
+  2. Then we mark them on the map with information box.
+  3. When each pin on Google is clicked, coresponding tutor info will be displayed on the map. 
+  
+__2. Email function with nodemailer__
+
+For each tutor in search result,  there is a button "Email Me" which allows a user to send email to the tutor through our application email. 
+
+__3. Search by Username or Skills__
+
+Tutor could be found by both his username or by his skills, user could switch search keyword by choosing different search bar tab in the search page. 
+
+__4. Like and Dislike a Tutor__
+
+In the search result, a tutor can be liked or disliked by users. Number of likes and dislikes are recorded in database.
+
+__5. Responsive design for Some pages__
+
+With the help of Bootstrap, we made some pages including adminDashboard.html and index.html responsive.
 
 ## Error Handling:
 __1. Input Validation__
@@ -73,12 +98,12 @@ __1. Input Validation__
 ```
   4. MongoDB Model validation with customized error message. Example:
 ```JavaScript
-        skills: {
-            type: String, required: [true, 'Skills required']
-        },
-        zipcode: {
-            type: String, required: [true, 'Zipcode required']
-        }
+	skills: {
+	    type: String, required: [true, 'Skills required']
+	},
+	zipcode: {
+	    type: String, required: [true, 'Zipcode required']
+	}
 ```
 
 __2. Page Authentication__
@@ -107,26 +132,3 @@ function getUserFromSession() {
             }
 });
 ```
-## Features:
-__1. Google Map API__
-
-Since we have postal code for each user, it allows us to display them on a map.
-  1. We first use Google's Geocoding API to convert the postal codes of the users from search result to longitude and latitude which is the only allowed input for Google Map API
-  2. Then we mark them on the map with information box.
-  3. When each pin on Google is clicked, coresponding tutor info will be displayed on the map. 
-  
-__2. Email function with nodemailer__
-
-For each tutor in search result,  there is a button "Email Me" which allows a user to send email to the tutor through our application email. 
-
-__3. Search by Username or Skills__
-
-Tutor could be found by both his username or by his skills, user could switch search keyword by choosing different search bar tab in the search page. 
-
-__4. Like and Dislike a Tutor__
-
-In the search result, a tutor can be liked or disliked by users. Number of likes and dislikes are recorded in database.
-
-__5. Responsive design for Some pages__
-
-With the help of Bootstrap, we made some pages including adminDashboard.html and index.html responsive.
