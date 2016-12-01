@@ -153,6 +153,7 @@ exports.getTutors = function(req,res){
 	}
 };
 
+
 exports.updateprofile = function(req,res){
 
 	console.log(req.body)
@@ -171,7 +172,57 @@ exports.updateprofile = function(req,res){
 	}
 }
 
+exports.updateLike = function(req,res){
+	console.log('============= updateLike =================');
+	var email = req.query.email;
 
+	User.findOne({email:email},function(err,user){
+		if(err){
+			return res.send(err);
+		}
+		else{
+			console.log(user); 
+
+			user['like'] += 1;
+			console.log(user['like']);
+			user.save(function(err){
+				if (err){
+					return res.send(err);
+				}
+				else{
+					console.log("like has been updated");
+					return res.send(user);
+				}
+			})
+		}
+	});
+};
+
+exports.updateDislike = function(req,res){
+console.log('============= updateDislike =================');
+	var email = req.query.email;
+
+	User.findOne({email:email},function(err,user){
+		if(err){
+			return res.send(err);
+		}
+		else{
+			console.log(user); 
+
+			user['dislike'] += 1;
+			console.log(user['dislike']);
+			user.save(function(err){
+				if (err){
+					return res.send(err);
+				}
+				else{
+					console.log("dislike has been updated");
+					return res.send(user);
+				}
+			})
+		}
+	});
+};
 /**
  * User logout - empty session
  *

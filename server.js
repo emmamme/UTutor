@@ -99,6 +99,10 @@ app.get('/userinsession', user.getUserFromSession);
 app.get('/tutorprofile', user.getTutorFromSession);
 app.get('/logout', user.logout);
 app.post('/email', user.email);
+app.get('/updateLike', user.updateLike);
+app.get('/updateDislike', user.updateDislike);
+
+// app.get('/tutorprofile',user.getProfile);
 app.get('/tutors',user.getTutors);
 app.get('/admin',admin.getUserFromSession)
 app.post('/updatepw',admin.updatepw)
