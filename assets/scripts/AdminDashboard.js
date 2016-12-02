@@ -117,14 +117,14 @@ $(document).ready(function() {
     })
 
     $("#button_init_db").click(function(){
-
-        var url = "/init";
-        $.get(url, function (data) {
-            alert(data);
-        })      
-
+		var confirmation = prompt("Please enter the following characters to confirm: =&$%# ", "");
+		if (confirmation == "=&$%#") {
+			var url = "/init";
+			$.get(url, function (data) {
+				alert(data);
+			})  
+		}   
     })
-
 });
  
 

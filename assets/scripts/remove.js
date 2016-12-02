@@ -1,4 +1,31 @@
 "use strict"
+$(function() {
+	getUserFromSession();
+	
+	// Get the user name from the server by making an
+    // ajax GET request to the url "/name"
+    // The callback function on success will call updateUI
+    // with the new value for name
+    function getUserFromSession() {
+        $.ajax({
+            url: "/userinsession",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function(response) {
+                if (response['type'] == 'admin' && response['email'] != "") {
+					$(".ututor_user").text(response['username'] + " (" + response['email'] + ")");
+				}
+				else {
+					window.location.href = "../index.html";
+				}
+            },
+			error: function (xhr) {
+				alert(xhr.responseText);
+			}
+        });
+    }
+});
 
 function Search(e) {
     e.preventDefault();
@@ -85,7 +112,16 @@ $(document).ready(function() {
         $('#pwtable').css('display', 'block')
         Search(e)
     })
-
+	
+	$("#button_init_db").click(function(){
+		var confirmation = prompt("Please enter the following characters to confirm: =&$%# ", "");
+		if (confirmation == "=&$%#") {
+			var url = "/init";
+			$.get(url, function (data) {
+				alert(data);
+			})  
+		}   
+    })
 });
  
 
