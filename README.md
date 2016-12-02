@@ -27,7 +27,7 @@ Admin Account:
 1. The main purpose of this website is to match tutors and users with the same iterests and skills. 
 2. This website is designed to serve three types of users: ___Admin___ and ___Tutor___ and ___Student___
 3. Regular users can only registor as: ___Tutor___ or ___Student___
-4. Users are required to login with email (unique identification) and password, after login, they will be redirect to different pages:
+4. Users are required to login with email (unique identification) and password, after login, they will be redirected to different pages:
   1. If user is an __admin__, he will be directed to __admin dashboard page__
   2. If user is a __tutor__, he will be directetd to his __profile page__
   3. If user is a __student__, he will be directed to __search page__
@@ -40,7 +40,7 @@ Admin Account:
   1. Edit their own profiles except email
   2. Can search for tutors by username or by skills
   3. Search results will be displayed on google map and in a list
-7. All data user entered are save into MongoDB database file
+7. All data user entered are save into MongoDB database
 
 ## Features:
 __1. Google Map API__
