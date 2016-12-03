@@ -100,7 +100,12 @@ function Save(){
     });
     //console.log(data_send); 
     $.post("/rm", {data:data_send}, function(data){
-        alert(`${data}`)
+        if (data == "Success") {
+            window.location.href = "../views/remove.html";
+        }
+        else {
+            alert(data);
+        }
     })
 
 }
