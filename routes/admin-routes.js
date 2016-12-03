@@ -87,7 +87,7 @@ exports.rmuser = function(req,res) {
 					res.send(err);
 				}
 				else{
-					res.send("Remove Successful");
+					res.send("Success");
 				}
 			});
 		}

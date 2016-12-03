@@ -50,6 +50,51 @@ exports.addUser = function(req, res) {
 };
 
 /**
+ * Adds a new user document to the database.
+ *
+ * @param {object} req request object
+ * @param {object} res response object
+ */
+exports.addUserByAdmin = function(req, res) {
+	console.log("============= addUserByAdmin =============");
+	console.log(req.body);
+	
+	req.assert('email', 'Invalid email address').isEmail();
+	req.assert('username', 'Invalid username (must be alphanumeric)').isAlphanumeric();
+	req.assert('password', 'Password is too short').isLength({min: 4});
+	req.assert('password', 'Password must be alphanumeric').isAlphanumeric();
+	req.assert('skills', 'Invalid Skills. Must be comma seperated.').isSkills();
+	req.assert('zipcode', 'Invalid zip code address').isZipcode();
+	req.assert('about', 'About is too long').isLength({max: 2000});
+	
+	
+
+	var errors = req.validationErrors();
+	if (errors) {
+		return res.send(errors[0].msg);
+	}
+	
+	var newUser = new User(req.body);
+
+	newUser.save(function(error, newUser) {
+		var response;
+        if (error) {
+			if (error.name === 'MongoError' && error.code === 11000) {
+				response = "Email already exists."
+			}
+			else if (error.name === 'ValidationError') {
+				response = error.errors[Object.keys(error.errors)[0]].message;
+			}
+		}
+		else {
+			response = "Success";
+		}
+
+        res.send(response);
+    })
+};
+
+/**
  * Gets a user document to the database.
  *
  * @param {object} req request object

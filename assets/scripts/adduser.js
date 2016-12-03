@@ -83,18 +83,13 @@ function studentRegister() {
 	};
 	
 	$.ajax({
-		url: "/user",
+		url: "/userByAdmin",
 		type: "POST",
 		dataType: "text",
 		contentType: "application/json; charset=utf_8",
 		data: JSON.stringify(data),
 		success: function(response) {
-			if (response == "Success") {
-				window.location.href = "Search.html";
-			}
-			else {
-				alert(response);
-			}
+			alert(response);
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
 			alert(xhr.responseText);
@@ -129,18 +124,13 @@ function tutorRegister() {
 	};
 	
 	$.ajax({
-		url: "/user",
+		url: "/userByAdmin",
 		type: "POST",
 		dataType: "text",
 		contentType: "application/json; charset=utf_8",
 		data: JSON.stringify(data),
 		success: function(response) {
-			if (response == "Success") {
-				window.location.href = "TutorProfile.html";
-			}
-			else {
-				alert(response);
-			}
+			alert(response);
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
 			alert(xhr.responseText);

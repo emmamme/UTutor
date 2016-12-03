@@ -103,13 +103,14 @@ app.get('/updateLike', user.updateLike);
 app.get('/updateDislike', user.updateDislike);
 app.get('/tutors',user.getTutors);
 
-app.get('/admin',admin.getUserFromSession)
-app.post('/updatepw',admin.updatepw)
-app.get('/init',admin.init)
-app.post('/update',admin.updateuser)
-app.post('/rm',admin.rmuser)
-app.post('/updatepw',admin.updateuser)
+app.get('/admin',admin.getUserFromSession);
+app.post('/updatepw',admin.updatepw);
+app.get('/init',admin.init);
+app.post('/update',admin.updateuser);
+app.post('/rm',admin.rmuser);
+app.post('/updatepw',admin.updateuser);
 app.post('/updateprofile', user.updateprofile);
+app.post('/userByAdmin', user.addUserByAdmin);
 
 
 
