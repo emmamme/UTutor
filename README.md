@@ -24,23 +24,49 @@ Admin Account:
 5. Go to: __[http://localhost:3000/](http://localhost:3000/)__
 
 ## Introduction:
-1. Three types of users: ___Admin___ and ___Tutor___ and ___Student___
-2. Regular users can only registor as: ___Tutor___ or ___Student___
-3. Login with email (unique identification) and password
-  1. If user is an __admin__, she will be directed to __admin dashboard page__
-  2. If user is a __tutor__, she will be directetd to her __profile page__
-  3. If user is a __student__, she will be directed to __search page__
-4. __Admin functions__
+1. The main purpose of this website is to match tutors and users with the same iterests and skills. 
+2. This website is designed to serve three types of users: ___Admin___ and ___Tutor___ and ___Student___
+3. Regular users can only registor as: ___Tutor___ or ___Student___
+4. Users are required to login with email (unique identification) and password, after login, they will be redirected to different pages:
+  1. If user is an __admin__, he will be directed to __admin dashboard page__
+  2. If user is a __tutor__, he will be directetd to his __profile page__
+  3. If user is a __student__, he will be directed to __search page__
+5. __Admin functions__
   1. Change any information (i.e. password, username, etc.) of any existing users
   2. Add users
   3. Delete Users
   4. Initialize database - drop all existing data except admin accounts
-5. __Tutor and Student functions__
+6. __Tutor and Student functions__
   1. Edit their own profiles except email
   2. Can search for tutors by username or by skills
   3. Search results will be displayed on google map and in a list
+7. All data user entered are save into MongoDB database
 
 ## Features:
+__1. Google Map API__
+
+Since we have postal code for each user, it allows us to display them on a map.
+  1. We first use Google's Geocoding API to convert the postal codes of the users from search result to longitude and latitude which is the only allowed input for Google Map API
+  2. Then we mark them on the map with information box.
+  3. When each pin on Google is clicked, coresponding tutor info will be displayed on the map. 
+  
+__2. Email function with nodemailer__
+
+For each tutor in search result,  there is a button "Email Me" which allows a user to send email to the tutor through our application email. 
+
+__3. Search by Username or Skills__
+
+Tutor could be found by both his username or by his skills, user could switch search keyword by choosing different search bar tab in the search page. 
+
+__4. Like and Dislike a Tutor__
+
+In the search result, a tutor can be liked or disliked by users. Number of likes and dislikes are recorded in database.
+
+__5. Responsive design for Some pages__
+
+With the help of Bootstrap, we made some pages including adminDashboard.html and index.html responsive.
+
+## Error Handling:
 __1. Input Validation__
   1. __Server-side validation__ using express-validator
   2. Used a few built-in functions such as isEmail, isLength
@@ -72,12 +98,12 @@ __1. Input Validation__
 ```
   4. MongoDB Model validation with customized error message. Example:
 ```JavaScript
-        skills: {
-            type: String, required: [true, 'Skills required']
-        },
-        zipcode: {
-            type: String, required: [true, 'Zipcode required']
-        }
+	skills: {
+	    type: String, required: [true, 'Skills required']
+	},
+	zipcode: {
+	    type: String, required: [true, 'Zipcode required']
+	}
 ```
 
 __2. Page Authentication__
@@ -106,22 +132,3 @@ function getUserFromSession() {
             }
 });
 ```
-
-__3. Google Map API__
-
-Since we have postal code for each user, it allows us to display them on a map.
-  1. We first use Google's Geocoding API to convert the postal codes of the users from search result to longitude and latitude which is the only allowed input for Google Map API
-  2. Then we mark them on the map with information box.
-  
-__4. Email function with nodemailer__
-
-For each tutor in search result,  there is a button "Email Me" which allows a user to send email to the tutor through our application email. 
-
-__5. Like and Dislike a Tutor__
-
-In the search result, a tutor can be liked or disliked. Number of likes and dislikes are recorded in database.
-
-
-__5. Responsive design for Some pages__
-
-With the help of Bootstrap, we made some pages including adminDashboard.html and index.html responsive.

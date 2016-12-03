@@ -15,7 +15,7 @@ exports.addUser = function(req, res) {
 	req.assert('username', 'Invalid username (must be alphanumeric)').isAlphanumeric();
 	req.assert('password', 'Password is too short').isLength({min: 4});
 	req.assert('password', 'Password must be alphanumeric').isAlphanumeric();
-	req.assert('skills', 'Invalid Skills').isSkills();
+	req.assert('skills', 'Invalid Skills. Must be comma seperated.').isSkills();
 	req.assert('zipcode', 'Invalid zip code address').isZipcode();
 	req.assert('about', 'About is too long').isLength({max: 2000});
 	
@@ -105,8 +105,8 @@ exports.getUserFromSession = function(req, res) {
 
 
 
-exports.getTutorFromSession = function(req, res) {
-	console.log("============= Tutor=================");
+exports.getUserInfo = function(req, res) {
+	console.log("============= getUserInfo =================");
 	if (req.session.email) {
 		var infor = req.session.email;
 		User.find({email:infor}, function(err,result){
@@ -114,12 +114,13 @@ exports.getTutorFromSession = function(req, res) {
 				return res.send(err);
 			}
 			else{
-				console.log(result);
 				return res.send(result);
 			}
 		})
-		
-	} 
+	}
+	else {
+		res.send("NotLogin");
+	}
 	
 };
 
@@ -155,19 +156,37 @@ exports.getTutors = function(req,res){
 
 
 exports.updateprofile = function(req,res){
-
+	console.log("============= updateprofile =============");
 	console.log(req.body)
-	let data = req.body.data
+	let data = req.body
+	
+	req.assert('email', 'Invalid email address').isEmail();
+	req.assert('username', 'Invalid username (must be alphanumeric)').isAlphanumeric();
+	req.assert('password', 'Password is too short').isLength({min: 4});
+	req.assert('password', 'Password must be alphanumeric').isAlphanumeric();
+	req.assert('skills', 'Invalid Skills. Must be comma seperated.').isSkills();
+	req.assert('zipcode', 'Invalid zip code address').isZipcode();
+	req.assert('about', 'About is too long').isLength({max: 2000});
+	
+	
+
+	var errors = req.validationErrors();
+	if (errors) {
+		return res.send(errors[0].msg);
+	}
+	
+	
 	if(data){
 		
-			let email = data.email
-			let password = data.password	
-			let about = data.about
-			let zipcode = data.zipcode
-			let skills = data.skills
-			let username = data.username
-			User.update({"email": email},{$set: {"password":password,"about":about,"username":username,"email":email,"zipcode":zipcode,"skills":skills}},function (err, result) {
-		   });
+		let email = data.email
+		let password = data.password	
+		let about = data.about
+		let zipcode = data.zipcode
+		let skills = data.skills
+		let username = data.username
+		User.update({"email": email},{$set: {"password":password,"about":about,"username":username,"email":email,"zipcode":zipcode,"skills":skills}},function (err, result) {
+			res.send("Success");
+		});
 		
 	}
 }

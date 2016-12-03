@@ -96,14 +96,13 @@ app.get('/', function(req, res) {
 app.post('/user', user.addUser);
 app.get('/user', user.getUser);
 app.get('/userinsession', user.getUserFromSession);
-app.get('/tutorprofile', user.getTutorFromSession);
+app.get('/userprofile', user.getUserInfo);
 app.get('/logout', user.logout);
 app.post('/email', user.email);
 app.get('/updateLike', user.updateLike);
 app.get('/updateDislike', user.updateDislike);
-
-// app.get('/tutorprofile',user.getProfile);
 app.get('/tutors',user.getTutors);
+
 app.get('/admin',admin.getUserFromSession)
 app.post('/updatepw',admin.updatepw)
 app.get('/init',admin.init)
