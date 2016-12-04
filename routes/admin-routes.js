@@ -49,7 +49,13 @@ exports.updateuser = function(req, res) {
 			let skills = data[i].skills
 			let username = data[i].username
 			User.update({"email": email},{$set: {"password":password,"about":about,"type":type,"username":username,"email":email,"zipcode":zipcode,"skills":skills}},function (err, result) {
-		   });
+		   		if(err){
+					res.send(err);
+				}
+				else{
+					res.send("Update Successful");
+				}
+			});
 		}
 	}
 }
