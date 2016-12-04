@@ -111,7 +111,7 @@ $(function() {
 						+ '<li class = "list-group-item">Zipcode: '+response[i]['zipcode']+'</li>' 
 						+ '<li class = "list-group-item">About: '+response[i]['about']+'</li>'
 
-						+ '<li class = "list-group-item"><<button type="button" class="button glyphicon glyphicon-thumbs-up" onclick="updateLike(this,\''+response[i]["email"]+'\')">  '+response[i]['like']+'</button>'
+						+ '<li class = "list-group-item"><button type="button" class="button glyphicon glyphicon-thumbs-up" onclick="updateLike(this,\''+response[i]["email"]+'\')">  '+response[i]['like']+'</button>'
 						+ '<button type="button" class="button glyphicon glyphicon-thumbs-down" onclick="updateDislike(this,\''+response[i]["email"]+'\')">  '+response[i]['dislike']+'</button></li>'
 
 						+ '<li class = "list-group-item">'
